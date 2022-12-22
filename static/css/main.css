@@ -1,0 +1,35 @@
+body {
+  background-color: #204030; /* dark background color */
+  color: #BD9302; /* white text color */
+  font-family: 'Courier New', monospace;
+  font-weight: lighter;
+}
+
+.weekday-button {
+  background-color: #a82b11; /* burgundy button color */
+  color: #BD9302; /* white text color */
+  border: none; /* remove default border */
+  display: block; /* stack buttons vertically */
+  margin-bottom: 20px; /* add some space between buttons */
+  width: 100%; /* make buttons take up the full width */
+  font-size: 20px; /* increase font size for buttons */
+  padding: 15px; /* add padding to buttons */
+  border-radius: 5px; /* add rounded corners to buttons */
+  cursor: pointer; /* change cursor to pointer on hover */
+  transition: all 01.2s; /* add a smooth transition effect */
+}
+
+#quiz {
+  text-align: center; /* center elements within the quiz element */
+}
+
+#quiz h1 {
+  font-size: 30px;
+  display: inline-block; /* allow the h1 element to be centered */
+}
+
+#elapsed-time {
+  display: inline-block; /* allow the elapsed-time element to be centered */
+  font-size: 30px; /* increase font size for elapsed time */
+  margin-top: 50px; /* add top margin to move timer down */
+}

@@ -1,0 +1,122 @@
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Doomsday Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id="quiz">
+      <h1>What day of the week is <span id="date"></span>?</h1>
+      <form id="form">
+        <!-- Iterate over the weekdays and display a button for each one -->
+      </form>
+      <span id="elapsed-time"></span>
+    </div>
+
+    <script>
+      weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      
+      startTime = Date.now();
+      elapsedTime = (Date.now() - startTime) / 1000;
+
+      let timer = setInterval(function() {
+        elapsedTime = Date.now() - startTime;
+        formattedElapsedTime = moment().startOf('day').milliseconds(elapsedTime).format('mm:ss.S');
+        document.getElementById("elapsed-time").innerHTML = formattedElapsedTime;
+      }, 10);
+
+      // Generate a random date when the page loads
+      let date = getRandomDate();
+
+      // Display the date in the page
+      document.getElementById('date').innerHTML = `${date.day}/${date.month}/${date.year}`;
+
+      // Iterate over the weekdays and display a button for each one
+      for (let i = 0; i < weekdays.length; i++) {
+        let button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'weekday-button';
+        button.value = weekdays[i];
+        button.textContent = weekdays[i];
+        button.addEventListener('click', function() {
+          checkAnswer(this.value);
+        });
+        document.getElementById('form').appendChild(button);
+      }
+
+      // Define the checkAnswer function
+      function checkAnswer(answer) {
+        // Get the correct answer from the quiz element
+        let correctAnswer = doomsday(date.year, date.month, date.day);
+
+        // Check if the answer is correct
+        if (answer.toLowerCase() == correctAnswer.toLowerCase()) {
+          // If the answer is correct, display a "Correct!" message
+          alert(`Correct!\n\nElapsed time: ${formattedElapsedTime}`);
+        } else {
+          // If the answer is incorrect, display the correct answer
+          alert(`Incorrect! The correct answer is ${correctAnswer}.\n\nElapsed time: ${formattedElapsedTime}`);
+        }
+
+        date = getRandomDate();
+        document.getElementById('date').innerHTML = `${date.month}/${date.day}/${date.year}`;
+        startTime = Date.now();
+      }
+
+
+      function getRandomDate() {
+        // Generate a random year between 1900 and 2100
+        const year = Math.floor(Math.random() * (2100 - 1900 + 1)) + 1900;
+
+        // Generate a random month between 1 and 12
+        const month = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+
+        // Generate a random day value that is valid for the given month
+        let day;
+        if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          day = Math.floor(Math.random() * (31 - 1 + 1)) + 1;
+        } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+          day = Math.floor(Math.random() * (30 - 1 + 1)) + 1;
+        } else {
+          // February has a maximum day value of 29 in leap years, 28 in non-leap years
+          if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+            day = Math.floor(Math.random() * (29 - 1 + 1)) + 1;
+          } else {
+            day = Math.floor(Math.random() * (28 - 1 + 1)) + 1;
+          }
+        }
+
+        // Return the date as an object with year, month, and day properties
+        return { year, month, day };
+      }
+
+      function doomsday(year, month, day) {
+        // Find the doomsday for the given year
+        let doomsdayYear = (year % 12 + Math.floor(year / 12) + Math.floor((year % 12) / 4)) % 7;
+
+        // Find the doomsday for the given month
+        let doomsdayMonth;
+        if (month === 2) {
+          // if the year is a leap year, set the doomsday for February to 7
+          if (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) {
+            doomsdayMonth = 7;
+          } else {
+            doomsdayMonth = 14;
+          }
+        } else {
+          doomsdayMonth = [3, 14, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12][month - 1];
+        }
+
+        // Calculate the day of the week using the doomsdays and the given date
+        let dayOfWeek = (day - doomsdayMonth + doomsdayYear) % 7;
+
+        // Return the day of the week as a string
+        
+        return weekdays[dayOfWeek];
+      }
+
+    </script>
+
+  </body>
+</html>
