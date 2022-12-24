@@ -51,7 +51,7 @@
         let correctAnswer = doomsday(date.year, date.month, date.day);
 
         // Check if the answer is correct
-        if (answer.toLowerCase() == correctAnswer.toLowerCase()) {
+        if (answer == correctAnswer) {
           // If the answer is correct, display a "Correct!" message
           alert(`Correct!\n\nElapsed time: ${formattedElapsedTime}`);
         } else {
