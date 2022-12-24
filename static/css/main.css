@@ -29,7 +29,15 @@ body {
 }
 
 #elapsed-time {
-  display: inline-block; /* allow the elapsed-time element to be centered */
-  font-size: 30px; /* increase font size for elapsed time */
-  margin-top: 50px; /* add top margin to move timer down */
+  position: fixed; /* make the timer element fixed */
+  bottom: 0; /* position the timer at the bottom of the screen */
+  left: 0; /* align the timer to the left of the screen */
+  right: 0; /* align the timer to the right of the screen */
+  display: block; /* display the timer as a block element */
+  font-size: 30px; /* increase the font size for the timer */
+  background-color: #BD9302; /* set the background color for the timer */
+  color: #204030; /* set the text color for the timer */
+  text-align: center; /* center the text within the timer */
+  padding: 10px; /* add some padding to the timer */
 }
+
