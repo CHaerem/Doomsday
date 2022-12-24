@@ -38,6 +38,6 @@ body {
   background-color: #BD9302; /* set the background color for the timer */
   color: #204030; /* set the text color for the timer */
   text-align: center; /* center the text within the timer */
-  padding: 10px; /* add some padding to the timer */
+  padding: 20px; /* add some padding to the timer */
 }
 
