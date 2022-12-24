@@ -5,7 +5,7 @@ body {
     font-weight: lighter;
   }
   
-.mode-button {
+  .mode-button {
     background-color: #a82b11; /* burgundy button color */
     color: #BD9302; /* white text color */
     border: none; /* remove default border */
@@ -17,7 +17,8 @@ body {
     border-radius: 5px; /* add rounded corners to buttons */
     cursor: pointer; /* change cursor to pointer on hover */
     transition: all 01.2s; /* add a smooth transition effect */
-}
+  }
+  
 
 #mode-select {
     text-align: center; /* center the mode buttons */
@@ -27,4 +28,5 @@ body {
     font-size: 30px;
     display: inline-block; /* allow the h1 element to be centered */
 }
+
   
