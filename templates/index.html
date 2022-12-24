@@ -1,15 +1,23 @@
-<!-- index.html -->
 <html>
   <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index_style.css') }}">
-    <title>Welcome to the Doomsday Quiz</title>
+    <title>Doomsday Quiz</title>
   </head>
   <body>
-    <h1>Welcome to the Doomsday Quiz</h1>
-    <p>Choose which mode you would like to use:</p>
-    <ul>
-      <li><a href="/learning">Learning Mode</a></li>
-      <li><a href="/quiz">Quiz Mode</a></li>
-    </ul>
+    <header>
+      <h1>Welcome to the Doomsday Quiz</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Quiz mode</h2>
+        <p>Test your knowledge of the Doomsday algorithm with a timed quiz.</p>
+        <a href="/quiz" class="button">Start quiz</a>
+      </section>
+      <section>
+        <h2>Learning mode</h2>
+        <p>Learn about the Doomsday algorithm through interactive lessons.</p>
+        <a href="/learning" class="button">Start learning</a>
+      </section>
+    </main>
   </body>
 </html>
